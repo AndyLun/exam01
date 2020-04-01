@@ -15,7 +15,5 @@ for x in range(0, 128):
 	y[x] = int(line)
 
 plt.plot(t,y)
-#plt.set_xlabel('Time')
-#plt.set_ylabel('Amplitude')
 plt.show()
 s.close()
