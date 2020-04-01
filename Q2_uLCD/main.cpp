@@ -5,7 +5,6 @@ Serial pc(USBTX, USBRX);
 uLCD_4DGL uLCD(D1, D0, D2);
 PwmOut pwm(D6);
 DigitalIn din(D7);
-Timer timSweep;
 float duty = 0.0;
 int increasing = 1;
 
@@ -17,26 +16,20 @@ int main() {
 	uLCD.line(25, 100, 100, 100, WHITE);
 	
 	pwm.period(0.001);
-	//timSweep.start();
 
 	while(true) {
-		if(duty > 1) duty = 1;
-		if(duty < 0) duty = 0;
 		pwm = duty;
 
-		//if(timSweep > 0.1) {
-			//timSweep.reset();
+		if(increasing) {
+			duty += 0.1;
+			if(duty >= 1) increasing = 0;
+		} else {
+			duty -= 0.1;
+			if(duty <= 0) increasing = 1;
+		}
 
-			if(increasing) {
-				duty += 0.1;
-				if(duty >= 1) increasing = 0;
-			} else {
-				duty -= 0.1;
-				if(duty <= 0) increasing = 1;
-			}
+		pc.printf("%d\r\n", din.read());
 
-			pc.printf("%d\r\n", din.read());
-		//}
 		wait(0.1);
 	}
 }
