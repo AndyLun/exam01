@@ -19,18 +19,19 @@ int main() {
 
 	while(true) {
 		pwm = duty;
+		
 		if(timSweep > 0.1) {
 			timSweep.reset();
 
 			if(increasing) {
 				duty += 0.1;
-				if(duty == 1) increasing = 0;
+				if(duty >= 1) increasing = 0;
 			} else {
 				duty -= 0.1;
-				if(duty == 0) increasing = 1;
+				if(duty <= 0) increasing = 1;
 			}
 		}
 
-		
+		wait(0.01);
 	}
 }
