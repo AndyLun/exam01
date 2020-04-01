@@ -34,7 +34,7 @@ int main() {
 				if(duty <= 0) increasing = 1;
 			}
 
-			pc.printf("%d\r\n", din);
+			pc.printf("%d\r\n", din.read());
 		}
 		wait(0.01);
 	}
