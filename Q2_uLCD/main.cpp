@@ -33,10 +33,9 @@ int main() {
 				duty -= 0.1;
 				if(duty <= 0) increasing = 1;
 			}
+
+			pc.printf("%d\r\n", din);
 		}
-
-		pc.printf("%1.3f\r\n", din);
-
 		wait(0.01);
 	}
 }
